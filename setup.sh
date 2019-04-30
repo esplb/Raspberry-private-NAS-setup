@@ -36,25 +36,25 @@ lsblk
 ####
 
 #create physical Volumne
-pycreate /dev/sda
+sudo pycreate /dev/sda
 #crteate vilume group name is data
-vgcreate data /dev/sda
+sudo vgcreate data /dev/sda
 # create logic volum
-lvcreate -L 4GB data -n owncloud
+sudo lvcreate -L 4GB data -n owncloud
 
 #mount 
-mkdir /mnt/owncloud
-mkfs.ext4 /dev/data/owncloud
-mkdir /mnt/owncloud
-mount /dev/data/owncloud /mnt/owncloud
+sudo mkdir /mnt/owncloud
+sudo mkfs.ext4 /dev/data/owncloud
+sudo mkdir /mnt/owncloud
+sudo mount /dev/data/owncloud /mnt/owncloud
 
 
 #run
-docker run --name owncloud -d -p 8080:80 -v /mnt/owncloud:/var/www/html/data
+sudo docker run --name owncloud -d -p 8080:80 -v /mnt/owncloud:/var/www/html/data
 #open http://RAPBERRYPI_IP:8080 finish the admin name and password config
 
 #if you had ran once before
-#docker start owncloud
+#sudo docker start owncloud
 
 #add disk
 #pycreate /dev/sdb
